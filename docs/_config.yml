@@ -1,0 +1,132 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+locale: en-US
+title: Cranberry Grape | Cosmic Bee | Tim Lovett
+email: tim@cranberrygrape.com
+description: >-
+  Website / news feed associated with the workings of
+  Cosmic Bee / Tim Lovett. Machine learning, hobbyist PCB design,
+  rust programming, 3D printing, and embedded programming.
+baseurl: ""
+url: "https://www.cranberrygrape.com"
+twitter_username: the_cosmic_bee
+github_username:  timo614
+minimal_mistakes_skin: sunrise
+search: true
+teaser: /assets/images/500x300.webp
+og_image: /assets/images/bee.webp
+
+twitter:
+  username: "the_cosmic_bee"
+
+# Social
+social:
+  type: Person
+  name: Tim Lovett
+  links:
+    - "https://twitter.com/the_cosmic_bee"
+    - "https://github.com/timo614"
+
+# Build settings
+markdown: kramdown
+remote_theme: mmistakes/minimal-mistakes
+# Outputting
+breadcrumbs: true
+permalink: /:categories/:title/
+paginate: 5 # amount of posts to show
+paginate_path: /page:num/
+timezone: America/New_York
+
+include:
+  - _pages
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
+
+# Plugins (previously gems:)
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+author:
+  name   : "Cosmic Bee (Tim Lovett)"
+  avatar : "/assets/images/bee.webp"
+  bio    : "Website / news feed associated with the workings of Cosmic Bee / Tim Lovett. Machine learning, hobbyist PCB design, rust programming, 3D printing, and embedded programming."
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/the_cosmic_bee"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/timo614"
+    - label: "Youtube"
+      icon: "fab fa-fw fa-youtube"
+      url: "https://www.youtube.com/@thecosmicbee"
+
+footer:
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/the_cosmic_bee"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/timo614"
+    - label: "Youtube"
+      icon: "fab fa-fw fa-youtube"
+      url: "https://www.youtube.com/@thecosmicbee"
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+      show_date: true
+      enable_copy_code_button: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      enable_copy_code_button: true
+      layout: single
+      author_profile: true
+
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
