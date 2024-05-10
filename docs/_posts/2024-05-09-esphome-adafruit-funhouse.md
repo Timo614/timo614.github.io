@@ -185,7 +185,7 @@ font:
     size: 12
 ```
 
-I configured several font sizes for use with the screen. For the font type I used [Roboto](https://fonts.google.com/specimen/Roboto). Roboto is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+I configured several font sizes for use with the screen. For the font type I used [Roboto](https://fonts.google.com/specimen/Roboto) which is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 Most of the other configuration is fairly straightforward but highlighting a few of them for the purposes of this post.
 
