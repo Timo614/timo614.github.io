@@ -308,7 +308,7 @@ The buzzer is setup for output here and rttl configured.
 
 As mentioned in the original file I referenced and carried over here the Phototransistor ADC sensor unfortunately can't be used when Wi-Fi is enabled. As I'll be using ESPHome to constantly stay connected it makes it useless for this configuration unfortunately.
 
-The other sensor, however, can be configured:
+The other sensors, however, can be configured:
 ```yaml
 sensor:
   - platform: aht10
