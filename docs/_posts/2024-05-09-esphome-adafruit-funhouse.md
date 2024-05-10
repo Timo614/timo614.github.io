@@ -111,7 +111,7 @@ The important parts TLDR:
 > std offset dst [offset],start[/time],end[/time]
 > The initial std and offset specify the standard time zone, as described above. The dst string and offset are the abbreviation and offset for the corresponding Daylight Saving Time zone; if the offset is omitted, it defaults to one hour ahead of standard time.
 >
-> The remainder of the specification describes when Daylight Saving Time is in effect. The start field is when Daylight Saving Time goes into effect and the end field is when the change is made back to standard time. The following formats are recognized for these fields:
+> The remainder of the specification describes when Daylight Saving Time is in effect. The start field is when Daylight Saving Time goes into effect and the end field is when the change is made back to standard time.
 
 ```yaml
 i2c:
@@ -185,7 +185,7 @@ font:
     size: 12
 ```
 
-I configured several font sizes for use with the screen.
+I configured several font sizes for use with the screen. For the font type I used [Roboto](https://fonts.google.com/specimen/Roboto). Roboto is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 Most of the other configuration is fairly straightforward but highlighting a few of them for the purposes of this post.
 
