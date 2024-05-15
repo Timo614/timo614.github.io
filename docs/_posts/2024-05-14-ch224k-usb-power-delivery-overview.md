@@ -33,8 +33,10 @@ The CH221K also further has an additional method by which a resistor is set for 
 
 <img src="{{ site.url }}{{ site.baseurl }}/assets/images/boards/ch224k/CH221K-voltage-configuration.webp" alt="CH221K voltage configuration" style="padding: 20px; background-color: #FFF;">
 
-In addition to the WeAct board there's an open source board available on oshwlabs by Stefan Wagner which uses this chip in a similar manner. The [USB Power Delivery Decoy (CH224K)](https://oshwlab.com/wagiminator/ch224k-usb-pd-decoy) board by Stefan Wagner is a great way to get hands on experience with WCH's CH224K IC. For the board Stefan made he uses the "5.2.2 Level configuration mode" mentioned in the [manual](https://www.wch-ic.com/downloads/CH224DS1_PDF.html).
+In addition to the WeAct board the [USB Power Delivery Decoy (CH224K)](https://oshwlab.com/wagiminator/ch224k-usb-pd-decoy) board by Stefan Wagner uses this chip in a similar manner and should also be referenced. I've included the relevant section of Stefan's schematic from the associated link below for further reference.
 
 <img src="{{ site.url }}{{ site.baseurl }}/assets/images/boards/ch224k/stefan-wagner-ch224k-relevant-schematic-section.webp" alt="Stefan Wagner's CH224K PD Relevant Schematic Section" style="padding: 20px; background-color: #FFF;">
 
-I'm a big fan of the development board and have been using them for a bit now even before I ran into the underlying open source schematic. I'd highly suggest grabbing some of the boards for future projects and using the chip for designs going forward. Hoping my own projects with it turn out well.
+As you can see in his board the CH224K has the CFG pins pulled to VDD via 10K resistors. When the DIP switch is enabled for the pins they are pulled to GND. As such his pin diagram is the opposite of the manual (to explain why the DIP switch doesn't mimic the manual).
+
+I'm a big fan of these development boards and have been using them for a bit now. I'd highly suggest grabbing some of the boards for future projects and using the chip for designs going forward. Hoping my own projects with it turn out well.
