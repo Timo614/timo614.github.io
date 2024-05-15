@@ -24,7 +24,7 @@ gallery:
     title: "Additional sensors for Home Assistant"
 ---
 
-The [Adafruit Funhouse](https://www.adafruit.com/product/4985) is a ESP32-S2 based board from Adafruit. The board was once part of their [AdaBox](https://www.adafruit.com/adabox) mystery project subscription service at one point which is how I came to aquire it.
+The [Adafruit Funhouse](https://www.adafruit.com/product/4985) is a ESP32-S2 based board from Adafruit. The board was once part of their [AdaBox](https://www.adafruit.com/adabox) mystery project subscription service at one point which is how I came to acquire it.
 
 ![Adafruit Funhouse running ESPHome]({{ site.url }}{{ site.baseurl }}/assets/images/projects/adafruit/adafruit-funhouse/esphome/initial/running-board.webp)
 
