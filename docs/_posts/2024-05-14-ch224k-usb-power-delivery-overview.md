@@ -17,7 +17,7 @@ header:
   overlay_image: /assets/images/boards/ch224k/header.webp
 ---
 
-The USB Power Delivery Decoy board by WeAct Studio is a great way to get hands on experience with WCH's CH224K IC. This IC allows for voltage to be configured in a few different ways and the [manual](https://www.wch-ic.com/downloads/CH224DS1_PDF.html) can be referenced for further details (I'll be including select elements of it here in this post).
+The [USB Power Delivery Decoy board](https://www.aliexpress.us/item/3256803150519042.html) by [WeAct Studio](https://www.aliexpress.com/store/1101545918) is a great way to get hands on experience with WCH's CH224K IC. This IC allows for voltage to be configured in a few different ways and the [manual](https://www.wch-ic.com/downloads/CH224DS1_PDF.html) can be referenced for further details (I'll be including select elements of it here in this post).
 
 {% include video id="gndXdZAs1r0" provider="youtube" %}
 
