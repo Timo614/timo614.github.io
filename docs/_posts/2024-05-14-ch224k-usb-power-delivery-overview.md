@@ -25,16 +25,17 @@ The WeAct Studio board appears to use the level configuration mode from the manu
 
 <img src="{{ site.url }}{{ site.baseurl }}/assets/images/boards/ch224k/level-configuration-mode.webp" alt="CH224K level configuration mode" style="padding: 20px; background-color: #FFF;">
 
-In addition there exists a method by which the configuration is determined via a resistor to ground.
+On the CH224K level configuration mode works by setting some pins to VDD and others to GND. This setup works well with DIP switches as a pin can be held high or low and the DIP switch can be used to optionally configure it accordingly.
+
+There also exists a method by which the configuration is determined via a resistor -- for this mode the manual mentions a setup where you'd have the board set to one voltage and optionally swap out a resistor to configure voltage.
 
 <img src="{{ site.url }}{{ site.baseurl }}/assets/images/boards/ch224k/resistance-configuration-mode.webp" alt="CH224K resistance configuration mode" style="padding: 20px; background-color: #FFF;">
 
-The CH221K also further has an additional method by which a resistor is set for the CFG pin to VDD and the requested voltage is configured according to the manual (I plan on using this in a future board).
+In addition to the CH224K WCH documents a CH221K which is configured via a resistor is set for the CFG pin to VDD. This IC has fewer pins than the CH224K.
 
 <img src="{{ site.url }}{{ site.baseurl }}/assets/images/boards/ch224k/CH221K-voltage-configuration.webp" alt="CH221K voltage configuration" style="padding: 20px; background-color: #FFF;">
 
-In addition to the WeAct board the [USB Power Delivery Decoy (CH224K)](https://oshwlab.com/wagiminator/ch224k-usb-pd-decoy) board by Stefan Wagner uses this chip in a similar manner and should also be referenced. I've included the relevant section of Stefan's schematic from the associated link below for further reference.
-
+For another great example of using the CH224K the [USB Power Delivery Decoy (CH224K)](https://oshwlab.com/wagiminator/ch224k-usb-pd-decoy) board by Stefan Wagner uses this chip in a similar manner. I've included the relevant section of Stefan's schematic from the associated link below for reference.
 <img src="{{ site.url }}{{ site.baseurl }}/assets/images/boards/ch224k/stefan-wagner-ch224k-relevant-schematic-section.webp" alt="Stefan Wagner's CH224K PD Relevant Schematic Section" style="padding: 20px; background-color: #FFF;">
 
 As you can see in his board the CH224K has the CFG pins pulled to VDD via 10K resistors. When the DIP switch is enabled for the pins they are pulled to GND. As such his pin diagram is the opposite of the manual (to explain why the DIP switch doesn't mimic the manual).
