@@ -17,7 +17,7 @@ header:
   overlay_image: /assets/images/boards/ch224k/header.webp
 ---
 
-The USB Power Delivery Decoy board by WeAct Studio is a great way to get hands on experience with WCH's CH224K IC. This IC allows for voltage to be configured in a few different ways and the [manual](https://www.wch-ic.com/downloads/CH224DS1_PDF.html) can be referenced for further details (I'll be including select elements of it here in this post).
+The [USB Power Delivery Decoy board](https://www.aliexpress.us/item/3256803150519042.html) by [WeAct Studio](https://www.aliexpress.com/store/1101545918) is a great way to get hands on experience with WCH's CH224K IC. This IC allows for voltage to be configured in a few different ways and the [manual](https://www.wch-ic.com/downloads/CH224DS1_PDF.html) can be referenced for further details (I'll be including select elements of it here in this post).
 
 {% include video id="gndXdZAs1r0" provider="youtube" %}
 
@@ -25,16 +25,19 @@ The WeAct Studio board appears to use the level configuration mode from the manu
 
 <img src="{{ site.url }}{{ site.baseurl }}/assets/images/boards/ch224k/level-configuration-mode.webp" alt="CH224K level configuration mode" style="padding: 20px; background-color: #FFF;">
 
-In addition there exists a method by which the configuration is determined via a resistor to ground.
+On the CH224K level configuration mode works by setting some pins to VDD and others to GND. This setup works well with DIP switches as a pin can be held high or low and the DIP switch can be used to optionally configure it accordingly.
+
+There also exists a method by which the configuration is determined via a resistor -- for this mode the manual mentions a setup where you'd have the board set to one voltage and optionally swap out a resistor to configure voltage.
 
 <img src="{{ site.url }}{{ site.baseurl }}/assets/images/boards/ch224k/resistance-configuration-mode.webp" alt="CH224K resistance configuration mode" style="padding: 20px; background-color: #FFF;">
 
-The CH221K also further has an additional method by which a resistor is set for the CFG pin to VDD and the requested voltage is configured according to the manual (I plan on using this in a future board).
+In addition to the CH224K WCH documents a CH221K which is configured via a resistor is set for the CFG pin to VDD. This IC has fewer pins than the CH224K.
 
 <img src="{{ site.url }}{{ site.baseurl }}/assets/images/boards/ch224k/CH221K-voltage-configuration.webp" alt="CH221K voltage configuration" style="padding: 20px; background-color: #FFF;">
 
-In addition to the WeAct board there's an open source board available on oshwlabs by Stefan Wagner which uses this chip in a similar manner. The [USB Power Delivery Decoy (CH224K)](https://oshwlab.com/wagiminator/ch224k-usb-pd-decoy) board by Stefan Wagner is a great way to get hands on experience with WCH's CH224K IC. For the board Stefan made he uses the "5.2.2 Level configuration mode" mentioned in the [manual](https://www.wch-ic.com/downloads/CH224DS1_PDF.html).
-
+For another great example of using the CH224K the [USB Power Delivery Decoy (CH224K)](https://oshwlab.com/wagiminator/ch224k-usb-pd-decoy) board by Stefan Wagner uses this chip in a similar manner. I've included the relevant section of Stefan's schematic from the associated link below for reference.
 <img src="{{ site.url }}{{ site.baseurl }}/assets/images/boards/ch224k/stefan-wagner-ch224k-relevant-schematic-section.webp" alt="Stefan Wagner's CH224K PD Relevant Schematic Section" style="padding: 20px; background-color: #FFF;">
 
-I'm a big fan of the development board and have been using them for a bit now even before I ran into the underlying open source schematic. I'd highly suggest grabbing some of the boards for future projects and using the chip for designs going forward. Hoping my own projects with it turn out well.
+As you can see in his board the CH224K has the CFG pins pulled to VDD via 10K resistors. When the DIP switch is enabled for the pins they are pulled to GND. As such his pin diagram is the opposite of the manual (to explain why the DIP switch doesn't mimic the manual).
+
+I'm a big fan of these development boards and have been using them for a bit now. I'd highly suggest grabbing some of the boards for future projects and using the chip for designs going forward. Hoping my own projects with it turn out well.
