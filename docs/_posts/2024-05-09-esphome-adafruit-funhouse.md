@@ -1,6 +1,6 @@
 ---
 title: "ESPHome Adafruit Funhouse"
-excerpt: "ESPHome Configuration"
+excerpt: "ESPHome Configuration for Adafruit Funhouse"
 date: 2024-05-09T20:35:22-04:00
 categories:
   - mini-projects
