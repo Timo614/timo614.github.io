@@ -123,7 +123,7 @@ The first, and by far the most annoying to use, compression type I found was the
 
 The short behind it is the nature of EfficientNetB0 appears to allow for large chunks of the underlying model to be removed and then to retrain most of the lost accuracy compressing it into the rest of the model.
 
-EfficientNetB0 contains multiple squeeze and excite blocks of various sizes. I assume the structure has a tendancy to create redundancies across various levels of these blocks which may explain why ends up working but I'm not sure on the exact reason for it outside that it does, in fact, work. A simple example can be shown here demonstrating this by removing a large section of the model, retraining, and seeing recovery of a large subset of accuracy.
+EfficientNetB0 contains multiple squeeze and excite blocks of various sizes. I assume the structure has a tendency to create redundancies across various levels of these blocks which may explain why ends up working but I'm not sure on the exact reason for it outside that it does, in fact, work. A simple example can be shown here demonstrating this by removing a large section of the model, retraining, and seeing recovery of a large subset of accuracy.
 
 As you can see from the [example](https://github.com/Timo614/machine-learning/blob/main/birds/notebooks/birds_96x96_524_outputs_full_relu_model_compression.ipynb) there's the initial loss of accuracy from the missing segment of model followed by the dense layers retraining to return the accuracy levels back into an acceptable range.
 
@@ -344,9 +344,9 @@ Test Accuracy: 83.50%
 ```
 
 ## Quantization
-From my limited experience seatching most articles I found about quantization were not discussing int8 quantization. There are specific challenges that arise from int8 quantization as it requires a representative dataset to be crafted and certain activations can cause issues.
+From my limited experience searching most articles I found about quantization were not discussing int8 quantization. There are specific challenges that arise from int8 quantization as it requires a representative dataset to be crafted and certain activations can cause issues.
 
-There were two main issues with quatization worth mentioning here that I ran into. The first was that the EfficientNetB0 model is not a good choice for int8 quantization as the swish activation causes wild swings in the potential outputs which don't map well. The second was a general drop in accuracy post quantization I initially couldn't address even with quantization aware training.
+There were two main issues with quantization worth mentioning here that I ran into. The first was that the EfficientNetB0 model is not a good choice for int8 quantization as the swish activation causes wild swings in the potential outputs which don't map well. The second was a general drop in accuracy post quantization I initially couldn't address even with quantization aware training.
 
 ### Swish activation
 For more information why it's an issue [see Tensorflow's article on EfficientNetLite](https://blog.tensorflow.org/2020/03/higher-accuracy-on-vision-models-with-efficientnet-lite.html).
