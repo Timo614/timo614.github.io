@@ -27,6 +27,8 @@ The code for this project can be found [here](https://github.com/Cosmic-Bee/unih
 
 Early on in my hobbyist electronics journey I came across the DFRobot HX711 pressure sensor. It had a micropython library for it and allowed access over i2c so it sounded like a good choice for a [little project modifying the code](https://github.com/Timo614/dfrobot_hx711_i2c_circuit_python) to work with circuit python and getting it working with my Adafruit Clue. With a Unihiker on hand I figured it would be neat to do something similar here.
 
+I had the pleasure of trying out the DFRobot Unihiker as part of the [Unihiker trial](https://community.dfrobot.com/contest-1040.html). Thank you DFRobot for sponsoring this project through the trial program!
+
 ## Function
 
 The scale is pretty simple once setup:
