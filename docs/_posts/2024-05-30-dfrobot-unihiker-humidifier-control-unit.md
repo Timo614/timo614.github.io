@@ -84,7 +84,7 @@ In this way you will have setup the humidifier circuit. The screen is used for d
 
 Note: I'm not responsible if you destroy your electronics with humidity. I'd heavily suggest using an enclosure with a wire grommet and keeping your electronics away from moisture where possible.
 
-For setup you'll need to go through the [normal ESPHome procedures for install](https://esphome.io/guides/getting_started_hassio.html). On my local machine I use the CLI to install the initial program and use my Home Assistant install to update OTA.
+For setup you'll need to go through the [normal ESPHome procedures for install](https://esphome.io/guides/getting_started_hassio.html). On my local machine I use the CLI to install the initial program and use my Home Assistant install to update OTA. Once you have ESPHome setup, use the associated yaml file from the repository to create the device. You'll likely need to update it accordingly to get it working with your Home Assistant environment.
 
 ### DFRobot Unihiker
 
@@ -102,4 +102,6 @@ I soldered a SMD connector to the LED ring allowing me to connect it directly to
 The SHT31 I connected via a Grove to dupont cable connection followed by a similar cable connecting back to the Unihiker port i2c port. Seeed and DFRobot use different pinouts for their i2c so pay attention to the signal wires to ensure the SDA and SCL are properly connected.
 
 For installation you can follow the normal [getting started procedures](https://www.unihiker.com/wiki/get-started). For my own setup I used VSCode remote SSH extension they discuss allowing access to the filesystem. To install the script in my case I simply created a `unihiker_humidifier.py` script at the root. From there you can run programs, find the script, and run it to enable this logic. I like in a sense how this makes the Unihiker versatile for running all sorts of applications.
+
+Note: the python file has the local IP address of your device hardcoded as an ENV variable. I suggest setting a static IP for the device on your local network and then updating it as needed.
 
