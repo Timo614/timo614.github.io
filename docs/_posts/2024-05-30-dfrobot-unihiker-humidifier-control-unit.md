@@ -86,6 +86,90 @@ Note: I'm not responsible if you destroy your electronics with humidity. I'd hea
 
 For setup you'll need to go through the [normal ESPHome procedures for install](https://esphome.io/guides/getting_started_hassio.html). On my local machine I use the CLI to install the initial program and use my Home Assistant install to update OTA. Once you have ESPHome setup, use the associated yaml file from the repository to create the device. You'll likely need to update it accordingly to get it working with your Home Assistant environment.
 
+The [ESPHome configuration](https://github.com/Cosmic-Bee/unihiker_humidifier/blob/main/xiao-humidifier.yaml) file is available in the associated repository. You'll want to make some changes to this depending upon your home assistant setup (setting up the encryption key and ota related values) but the gist of the file is in a state ready to use. I'll describe some key elements here.
+
+```py
+esphome:
+  name: xiao-humidifier
+  friendly_name: Xiao Humidifier
+```
+
+This is simply the name of the device.
+
+```py
+# Uses the Xiao ESP32S3
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: arduino
+```
+
+This just selects the arduino framework and chooses the esp32s3 board.
+
+```py
+# I have GPIO 7 which is pin D8 from the pinout as the humidifier signal
+# See https://files.seeedstudio.com/wiki/SeeedStudio-XIAO-ESP32S3/img/2.jpg
+switch:
+  - platform: gpio
+    pin: GPIO7
+    name: "Humidifier"
+```
+
+As the comment mentions I'm using GPIO7 here / pin D8 as the enable pin for the atomization module.
+
+```py
+# DHT sensor on GPIO1 / pin D0
+sensor:
+  - platform: dht
+    pin: GPIO1
+    temperature:
+      name: "Xiao Temperature"
+    humidity:
+      name: "Xiao Humidity"
+      id: xiao_humidity
+    update_interval: 60s
+```
+
+DHT11 1 wire device on pin GPIO1 which is D0.
+
+```py
+# Uses CLK and DIO pins GPIO2 / D1 and GPIO3 / D2
+display:
+  - platform: tm1637
+    id: tm1637_display
+    clk_pin: GPIO2
+    dio_pin: GPIO3
+    inverted: true
+    length: 4
+    # The logic here grabs the humidity using the xiao_humidity
+    # name set above in the sensor: humidity: id: section
+    # It then converts it to an integer and displays it
+    lambda: |-
+      if (id(xiao_humidity).has_state()) {
+        char str[5];
+        int humidity = static_cast<int>(id(xiao_humidity).state);
+        snprintf(str, sizeof(str), "%02d", humidity);
+        it.print(str);
+      } else {
+        it.print("----");
+      }
+```
+
+I mistakenly said this was using i2c in the video but it's using a two wire CLK and DIO interface for the TM1637 4 segment display. ESPHome makes it fairly easy to get up and running with the display. You can see I'm getting the value from the humidity sensor here and then displaying its contents on the display.
+
+```py
+# This sets up the web server to allow the Unihiker access
+# on the local wifi. I've setup an http basic username and
+# password to add some level of security on the local network.
+web_server:
+  port: 80
+  auth:
+    username: !secret web_server_username
+    password: !secret web_server_password
+```
+
+This is the important element for the purposes of this project. It allows the ESPHome device to surface a webserver which we're connecting to and utilizing to update the device status.
+
 ### DFRobot Unihiker
 
 The Unihiker here is fairly straightforward to setup as it's only relying on a few components.
@@ -103,5 +187,153 @@ The SHT31 I connected via a Grove to dupont cable connection followed by a simil
 
 For installation you can follow the normal [getting started procedures](https://www.unihiker.com/wiki/get-started). For my own setup I used VSCode remote SSH extension they discuss allowing access to the filesystem. To install the script in my case I simply created a `unihiker_humidifier.py` script at the root. From there you can run programs, find the script, and run it to enable this logic. I like in a sense how this makes the Unihiker versatile for running all sorts of applications.
 
-Note: the python file has the local IP address of your device hardcoded as an ENV variable. I suggest setting a static IP for the device on your local network and then updating it as needed.
+I'll go into some detail about the [code](https://github.com/Cosmic-Bee/unihiker_humidifier/blob/main/unihiker_humidifier.py) here so you can see how to further customize it. For this I'll grabbing fragments of it to describe why it works the way it does. I suggest using the above link for the file itself versus copying this from here.
 
+```py
+LIGHT_ENABLE_THRESHOLD = 300
+
+# API User and password, set via ESPHome
+BASIC_USERNAME = 'BASIC_USER'
+BASIC_PASSWORD = 'BASIC_PASS'
+
+# You'll need to provide the IP address of your ESPHome
+# device on your local network. Giving it a static IP is
+# helpful here.
+BASE_URL = "http://192.168.2.103"
+
+# These endpoints are provided by ESPHome
+# https://esphome.io/web-api/index.html
+HUMIDIFIER_ON_PATH = "/switch/humidifier/turn_on"
+HUMIDIFIER_OFF_PATH = "/switch/humidifier/turn_off"
+SENSOR_HUMIDITY_PATH = "/sensor/xiao_humidity"
+```
+
+At the top of the file there are several ENV variables. The first is the light enable threshold. It's an arbitrary value you'll want to configure for the point at which the light sensor should enable the LEDs. The default may be a bit low here but I wanted to simulate the lighting conditions so went with this value.
+
+The BASE URL is the local network URL for your ESPHome device. If you only have the hostname of the device you can enter your terminal and find it via ping.
+
+For example:
+```py
+ping xiao-humidifier.wild
+
+PING xiao-humidifier.wild (192.168.2.103) 56(84) bytes of data.
+64 bytes from 192.168.2.103 (192.168.2.103): icmp_seq=1 ttl=254 time=253 ms
+^C
+--- xiao-humidifier.wild ping statistics ---
+2 packets transmitted, 1 received, 50% packet loss, time 1001ms
+rtt min/avg/max/mdev = 253.172/253.172/253.172/0.000 ms
+```
+
+I suggest setting a static IP for the device on your local network and then updating it as needed.
+
+```py
+NEOPIXEL_PIN = Pin(22)
+PIXELS_NUM = 8
+neopixel = NeoPixel(NEOPIXEL_PIN, PIXELS_NUM)
+```
+
+The logic here uses Pin 22 as the LED ring control pin.
+
+This is the same nightlight functionality I used in my scale.
+
+```py
+LIGHT_ENABLE_THRESHOLD = 300
+Board("UNIHIKER").begin()
+lightEnabled = None
+
+def handleNightMode():
+    global lightEnabled
+    lightValue = light.read()
+    if 0 <= lightValue < LIGHT_ENABLE_THRESHOLD:
+        lightEnabled = True
+        for i in range(PIXELS_NUM):
+            neopixel[i] = (20, 20, 20)
+    elif lightEnabled:
+        lightEnabled = False
+        for i in range(PIXELS_NUM):
+            neopixel[i] = (0, 0, 0)
+
+while True:
+    handleNighteMode()
+```
+
+The humidifier control unit is rather simple. I initialize the GUI and its elements:
+
+```py
+gui = GUI()
+
+# Page header
+gui.draw_text(text="Humidifier", x=45, y=15, font_size=25, color="teal")
+
+# Draw initial values on GUI
+current_state = gui.draw_text(text="OFF", x=20, y=70, font_size=9, color="teal")
+
+gui.draw_text(text="Xiao Humidity", x=20, y=170, font_size=9, color="teal")
+gui.draw_text(text="Device Humidity and Temperature", x=20, y=290, font_size=9, color="teal")
+
+# These draw the humidity and temperature text on the screen
+# That text is then updated during the program loop
+humidity_text = gui.draw_digit(x=180, y=140, text=str(humidity_set_point), origin="center", color="blue", font_size=50)
+current_humidity_text = gui.draw_digit(x=50, y=140, text="0", origin="center", color="blue", font_size=50)
+unihiker_humidity_text = gui.draw_digit(x=50, y=260, text="0", origin="center", color="red", font_size=40)
+unihiker_temperature_text = gui.draw_digit(x=180, y=260, text="0F", origin="center", color="red", font_size=40)
+
+# Add up and down buttons for humidity set point adjustment
+gui.add_button(x=180, y=80, w=50, h=30, text="Up", origin='center', onclick=increase_humidity_set_point)
+gui.add_button(x=180, y=190, w=50, h=30, text="Down", origin='center', onclick=decrease_humidity_set_point)
+```
+
+This pretty much is just plain GUI related setup work. You can see from the x and y locations it's fairly easy to setup a base GUI to work from.
+
+I added some helper methods to configure the humidity (relying on the global variable to set the current state):
+```py
+def increase_humidity_set_point():
+    global humidity_set_point
+    humidity_set_point = min(100, humidity_set_point + 1)
+    humidity_text.config(text=str(humidity_set_point))
+
+def decrease_humidity_set_point():
+    global humidity_set_point
+    humidity_set_point = max(0, humidity_set_point - 1)
+    humidity_text.config(text=str(humidity_set_point))
+
+def get_current_humidity():
+    response = requests.get(f"{BASE_URL}{SENSOR_HUMIDITY_PATH}", auth=(BASIC_USERNAME, BASIC_PASSWORD))
+    data = response.json()
+    return data["value"]
+
+def set_humidifier_state(state):
+    url = f"{BASE_URL}{HUMIDIFIER_ON_PATH}" if state else f"{BASE_URL}{HUMIDIFIER_OFF_PATH}"
+    requests.post(url, auth=(BASIC_USERNAME, BASIC_PASSWORD))
+```
+
+And then in the loop I handle the night mode logic, grab the humidity values, update the GUI to reflect it, and handle the button pressing events:
+
+```py
+while True:
+    handleNightMode()
+
+    xiao_humidity = get_current_humidity()
+    current_temperature = int(sensor.temp_f())
+    current_humidity = int(sensor.humidity())
+
+    current_humidity_text.config(text=str(xiao_humidity))
+    unihiker_humidity_text.config(text=str(current_humidity))
+    unihiker_temperature_text.config(text=f"{current_temperature}F")
+
+    if button_a.is_pressed():
+        current_state.config(text="ON")
+        humidifier_enabled = True
+    elif button_b.is_pressed():
+        current_state.config(text="OFF")
+        humidifier_enabled = False
+        set_humidifier_state(False)
+
+    if humidifier_enabled:
+        if xiao_humidity < humidity_set_point:
+            set_humidifier_state(True)
+        else:
+            set_humidifier_state(False)
+
+    time.sleep(0.1)
+```
