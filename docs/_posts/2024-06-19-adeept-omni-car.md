@@ -131,8 +131,6 @@ To test the robot I decided I'd run through all of the examples provided confirm
 
 ### Lesson 1 Blink
 
-The first example unfortunately ran into an error for me. This relates to the fact it was written for MicroPython and I had installed CircuitPython per the guide. Not a big deal though I adjusted the example for CircuitPython and ran it via Mu. I noticed the documentation references a CircuitPython based code so it looks like an update was made just the associated blink file was left with the old code.
-
 ```py
 import board
 import digitalio
