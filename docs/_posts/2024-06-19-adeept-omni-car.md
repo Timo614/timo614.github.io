@@ -334,7 +334,10 @@ letter_A = [
 ]
 ```
 
-These are the columns for the 8 rows indicating which pixels are enabled. The `0x0c`:`00001100`
+These are the columns for the 8 rows indicating which pixels are enabled.
+
+```
+`0x0c`:`00001100`
 `0x1e`:`00011110`
 `0x33`:`00110011`
 `0x33`:`00110011`
@@ -342,6 +345,7 @@ These are the columns for the 8 rows indicating which pixels are enabled. The `0
 `0x33`:`00110011`
 `0x33`:`00110011`
 `0x00`:`00000000`
+```
 
 If you look closely you can see the letter `A` there. That's pretty much all there is to this. The logic for the example is setup to take the word length, treat each letter like it's 8 bits wide (as they are) and then shifts over it from start to end displaying all the letters by selectively enabling those pixels for the given scroller at each point. In the example the logic is setup to call display.pixel for columns not visible given the shift which explains how it's rendering across the entire 16 columns.
 
