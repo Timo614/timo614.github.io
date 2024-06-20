@@ -18,7 +18,7 @@ header:
   overlay_image: /assets/images/projects/dfrobot/voice-recognition-module/car-control/overview.webp
 ---
 
-For this project I'm utilizing [DFRobot Offline Voice Recognition module](https://www.dfrobot.com/product-2665.html) as the control mechanism for the [Adeept Omni-directional Mecanum Wheels car kit](https://www.adeept.com/adeept-4wd-omni-directional-mecanum-wheels-robotic-car-kit-for-esp32-s3-banana-pi-picow-s3-diy-stem-remote-controlled-educational-robot-kit_p0406_s0086.html). 
+For this project I'm utilizing [DFRobot Offline Voice Recognition module (affiliate link)](https://www.dfrobot.com/product-2665.html?tracking=Abxl41KH0gYXMiwPMWR8KfrR2xHcVGPklsPZMCdpxU6kcAylDPqgIkd9tpqCto1b) as the control mechanism for the [Adeept Omni-directional Mecanum Wheels car kit](https://www.adeept.com/adeept-4wd-omni-directional-mecanum-wheels-robotic-car-kit-for-esp32-s3-banana-pi-picow-s3-diy-stem-remote-controlled-educational-robot-kit_p0406_s0086.html). 
 
 {% include video id="BExq-ssUYSE" provider="youtube" %}
 
