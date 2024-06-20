@@ -15,7 +15,7 @@ header:
   overlay_image: /assets/images/projects/dfrobot/unihiker/humidifier/overview.webp
 ---
 
-[Unihiker](https://www.unihiker.com/) is a single board computer from [DFRobot](https://www.dfrobot.com/). The Unihiker runs a customized version of Debian and provides a "Pinpong" library to interface with the various GPIO. They also provide several sensor libraries they're already ported.
+[Unihiker (affiliate link)](https://www.dfrobot.com/product-2691.html?tracking=Abxl41KH0gYXMiwPMWR8KfrR2xHcVGPklsPZMCdpxU6kcAylDPqgIkd9tpqCto1b) is a single board computer from [DFRobot](https://www.dfrobot.com/). The Unihiker runs a customized version of Debian and provides a "Pinpong" library to interface with the various GPIO. They also provide several sensor libraries they're already ported.
 
 For this project I'll be controlling an LED ring, interfacing with the onboard buttons and light sensor, and using i2c to communicate with a SHT31 temperature and humidity sensor.
 The code for this project can be found [here](https://github.com/Cosmic-Bee/unihiker_humidifier).
