@@ -790,10 +790,10 @@ send_command("forwardStart\n")    # Buzzer
 send_command("backwardStart\n")   # Servo Angle Initialize
 send_command("leftStart\n")       # Hello Adeept LCD
 send_command("rightStart\n")      # Servo -90 to 90 positioning
-send_command("upStart\n")         # WS2812 Color Change
-send_command("downStart\n")       # WS2812 Color Change Red
-send_command("lookLeftStart\n")   # WS2812 Breathing Lamp
-send_command("lookRightStart\n")  # WS2812 Brightness 10%
+send_command("lookLeftStart\n")   # WS2812 Color Change
+send_command("lookRightStart\n")  # WS2812 Color Change Red
+send_command("downStart\n")       # WS2812 Breathing Lamp
+send_command("upStart\n")         # WS2812 Brightness 10%
 send_command("aStart\n")          # Onboard WS2812 Breathing Light Effect
 send_command("bStart\n")          # Onboard WS2812 RGBW Color Wheel
 ```
