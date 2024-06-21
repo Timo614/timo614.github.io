@@ -7,11 +7,9 @@ categories:
   - tinyml
 tags:
   - keras
-  - bird feeder
   - int8 quantization
   - machine learning
   - tinyml
-  - projects
 header:
   teaser: /assets/images/projects/birds/teaser.webp
   image: /assets/images/projects/birds/overview.webp
