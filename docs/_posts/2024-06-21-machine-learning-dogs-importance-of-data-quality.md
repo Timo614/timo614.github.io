@@ -43,7 +43,12 @@ You see the issue with training a model on such things is you're training the mo
 
 This in turn leads to further questions though.
 
-If you were to benchmark a model based on this dataset's accuracy with it what are you optimizing for exactly? For identifying Christmas color pop themed dogs in the real world? Each of those images drops its color channels for some pixels in favor of a styled output. By benchmarking two models on this, assuming they are close in results, you may mistakenly be favoring a model that is not properly reflective of real life scenarios. Let's take this example to the extreme: if you were to provide only color popped images and trained two models based on them and then used their results on real dog images what properties of the model are you optimizing for? You're optimizing for models that ignore color data or give less weight in given scenarios. Even if you had a model that returned 90% accuracy in that given state it does not reflect that the model you're created has a better architecture just that it solves your particular (and may I add artificial) problem better.
+If you were to benchmark a model based on this dataset's accuracy with it what are you optimizing for exactly? For identifying Christmas color pop themed dogs in the real world? 
+
+Each of those images drops its color channels for some pixels in favor of a styled output. By benchmarking two models on this, assuming they are close in results, you may mistakenly be favoring a model that is not properly reflective of real life scenarios. 
+
+Let's take this example to the extreme: if you were to provide only color popped images and trained two models based on them and then used their results on real dog images what properties of the model are you optimizing for? 
+You're optimizing for models that ignore color data or give less weight in given scenarios. Even if you had a model that returned 90% accuracy in that given state it does not reflect that the model you've created has a better architecture just that it solves your particular (and may I add artificial) problem better perhaps by giving less weight to the color than the other model does.
 
 What's interesting to me is this data supposedly came from ImageNet. Is ImageNet full of both black and white and color pop images then? Why would researchers releasing this dogs subset not take the time to investigate the underlying images?
 
