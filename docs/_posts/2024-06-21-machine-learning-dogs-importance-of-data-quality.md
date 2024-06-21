@@ -1,7 +1,7 @@
 ---
 title: "Machine Learnings Dogs or The Importance of Data Quality"
 excerpt: "A look into a flawed dataset utilized by the machine learning community"
-date: 2024-06-20T11:41:00-04:00
+date: 2024-06-20T19:32:00-04:00
 categories:
   - mini-projects
 tags:
