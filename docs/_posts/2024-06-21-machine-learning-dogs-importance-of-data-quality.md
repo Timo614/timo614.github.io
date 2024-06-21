@@ -29,7 +29,7 @@ gallery:
 
 Outside of some unobtainable perfect state, before you've even pressed the button to begin training your model you have already hindered its accuracy in some form. The reason for this is simple, your model is based entirely on the selection and composition of your training image set.
 
-Take for example the [Stanfords Dogs dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/), a famous one used by lots of researchers to test quality of models given the difficulty of discerning specific breed markers. You can see from their [number of training images per class](http://vision.stanford.edu/aditya86/ImageNetDogs/bar_graph_full.png) it's an unbalanced dataset to begin with. That's not the half of it though.
+Take for example the [Stanford Dogs dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/), a famous one used by lots of researchers to test quality of models given the difficulty of discerning specific breed markers. You can see from their [number of training images per class](http://vision.stanford.edu/aditya86/ImageNetDogs/bar_graph_full.png) it's an unbalanced dataset to begin with. That's not the half of it though.
 
 The real problem with this dataset begins to appear when you examine some of the random images that comprise it.
 
