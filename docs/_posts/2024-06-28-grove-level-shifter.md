@@ -51,6 +51,50 @@ For this setup it's really basic you just want to make sure that you have the [H
 
 The end result is you can connect a Grove cable on one end with 3V3 and 3V3 signals and on the other end get 5V and 5V signals out another Grove cable with the help of one dupont cable to the 5V HV. This in turn ends up giving you a much smaller setup in terms of cables for shifting.
 
+## Testing Code Used in the Video
+
+```c++
+// Initialize the Grove LED Button (D6, D7 signals)
+const int ledPin = D7;
+const int buttonPin = D6;
+// Atomization module is on D0
+const int enablePin = D0;
+
+// Initial state in the off position
+bool enabled = false;
+bool buttonState = false;
+bool lastButtonState = false;
+
+void setup() {
+  // The three pins are setup with the button as an input and others as output
+  pinMode(ledPin, OUTPUT);
+  pinMode(enablePin, OUTPUT);
+  pinMode(buttonPin, INPUT);
+  
+  // LED and atomization enable are pulled low to set initial state
+  digitalWrite(ledPin, LOW);
+  digitalWrite(enablePin, LOW);
+}
+
+void loop() {
+  // Check if button has been driven low
+  buttonState = digitalRead(buttonPin) == LOW;
+  
+  // If the button has changed its state
+  if (buttonState && !lastButtonState) {
+    // Toggle 
+    enabled = !enabled;
+    
+    digitalWrite(ledPin, enabled ? HIGH : LOW);
+    digitalWrite(enablePin, enabled ? HIGH : LOW);
+  }
+  
+  lastButtonState = buttonState;
+  
+  delay(50);
+}
+```
+
 ## My Level Up Xiao Board
 
 My little level up Xiao board is coming soon!

@@ -77,7 +77,7 @@ For the configuration options in Arduino I relied on the [Banana Pi Leaf S3 rela
 Initially I was thinking of using the ultrasonic sensor to detect the range of the person in front of the vehicle to aid with the distance tracking. As such I added support for it in this example but I didn't end up using it in the final code. 
 
 I'll hit some of the elements here to give some information:
-```py
+```c++
 #define SDA_PIN 5
 #define SCL_PIN 6
 #define NUM_LEDS 4
@@ -95,7 +95,7 @@ I2C_LCD lcd(0x27);
 
 The logic initializes and configures the different elements using their GPIO pins (versus the silkscreen). 
 
-```py
+```c++
 void playTone(int pin, int frequency, int duration) {
     int period = 1000000L / frequency;
     int pulse = period / 2;
@@ -121,7 +121,7 @@ void playAlertSound() {
 There's logic which attempts to play a sound on alert here. I tried to make it sound similar to the Metal Gear Solid alert noise but it was hard with a buzzer.
 
 Inside the setup method:
-```py
+```c++
     delay(5000);
     Serial.begin(9600);
 
@@ -146,7 +146,7 @@ Inside the setup method:
 
 The logic is pretty straightforward first initializing the LED strip to red, it configures i2c, and the LCD with an initial message.
 
-```py
+```c++
     delay(500);
     // Test servo: sweep from -90 to 90 degrees and back
     for (int angle = -90; angle <= 90; angle += 10) {
@@ -165,7 +165,7 @@ The logic is pretty straightforward first initializing the LED strip to red, it 
 ```
 The servo does a sweep from side. YOu can see it does it in 10 degree increments.
 
-```py
+```c++
     for (int i = 0; i < NUM_LEDS; i++) {
         strip.setPixelColor(i, strip.Color(0, 255, 0));
     }
@@ -173,7 +173,7 @@ The servo does a sweep from side. YOu can see it does it in 10 degree increments
 ```
 Given the LEDs are RGB this sets them all to green. The array is 0-indexed and as such it updates all four LEDs by looping over them.
 
-```py
+```c++
     // Test each motor in each direction for one second
     Serial.println("Testing forward");
     lcd.setCursor(0, 1);
@@ -186,7 +186,7 @@ Given the LEDs are RGB this sets them all to green. The array is 0-indexed and a
 ```
 Each of the directions is tested here. It's useful to compare the direction of the wheels to mecanum car directional graphics while testing. 
 
-```py 
+```c++ 
     for (int i = 0; i < NUM_LEDS; i++) {
         strip.setPixelColor(i, strip.Color(0, 0, 255));
     }
@@ -194,7 +194,7 @@ Each of the directions is tested here. It's useful to compare the direction of t
 ```
 Finally the color is set to blue.
 
-```py
+```c++
 void loop() {
     // Get distance from ultrasonic sensor
     float distance = ultrasonic.getDistance();
@@ -221,7 +221,7 @@ The vision sensor test is in this directory. For the most part the initializatio
 
 As we're already using the i2c bus for the LCD we don't need to configure anything else there. I'm going to focus on the loop in particular for this example.
 
-```py
+```c++
 void loop() {
     static bool personDetected = false;
     static bool alertGiven = false;
@@ -267,7 +267,7 @@ The logic is setup to invoke the model. After it invokes it gets back the boundi
 
 This is the main project and brings those elements together. I won't repeat the above here but will go into the control code:
 
-```py
+```c++
 int personX = Infer.boxes()[0].x;
 int personWidth = Infer.boxes()[0].w;
 
@@ -283,7 +283,7 @@ The servo control logic shown in the [SSCMA examples](https://github.com/Seeed-S
 
 I then used the above variables to control the car's actual movement based on their state.
 
-```py
+```c++
 if (turnLeft) {
     Serial.println("Turn Left");
     motorControl.moveCar(MOVE, TURN_LEFT, 50);
@@ -300,7 +300,7 @@ if (turnLeft) {
 
 Turning moves fairly quickly (in retrospect perhaps I should have used a smaller value for the speed) which can be a problem when using the face sensing so I opted to only turn for 100ms at a time.
 
-```py
+```c++
 } else if (moveForward) {
     lcd.print("Action: Moving");
     lcd.setCursor(0, 1);
@@ -320,7 +320,7 @@ Turning moves fairly quickly (in retrospect perhaps I should have used a smaller
 ```
 For the forward and backward (not shown here) movement the logic determines if it should also move left or right and if so moves in that direction.
 
-```py
+```c++
 } else if (moveLeft) {
     lcd.print("Action: Moving");
     lcd.setCursor(0, 1);
