@@ -35,8 +35,6 @@ A level shifter allows your microcontroller which tend to use 3V3 to interface w
 
 Bidirectional level shifters are fairly easy to use but quickly make a project a mess given the need for several wires. At their simplest setup you place wires for each signal line you want to shift to a LV# pin on the shifter. Their corresponding HV# pin is then connected to whatever device you wanted to utilize. The LV pin is associated with the lower voltage while the HV pin is associated with the higher voltage. In addition a common ground must be used between the two voltage sources.
 
-<img src="{{ site.url }}{{ site.baseurl }}/assets/images/projects/seeed/grove-level-shifter/level-shift-fritzing.webp" alt="Level Shift Fritzing" style="padding: 20px; background-color: #FFF;">
-
 <img src="{{ site.url }}{{ site.baseurl }}/assets/images/projects/seeed/grove-level-shifter/level-shift-fritzing-schematic.webp" alt="Level Shift Fritzing Schematic" style="padding: 20px; background-color: #FFF;">
 
 Often times MCUs will provide a pin for the VBUS line which comes from the USB. One could use this as the HV side and have the LV side be the 3V3 from the microcontroller to level shift up to that level. If you need a lot of current a separate 5V voltage source would be ideal over using this though as your microcontroller will also require current to operate and USB 2.0 only allows for up to 500mA. USB PD allows for up to 3A@5V so there are a lot more possibilities when you bring something like a CH224K from WCH into the mix to negotiate for USB PD.
