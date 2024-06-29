@@ -37,7 +37,7 @@ In the case of a self trained model there are additional steps required as you n
 
 For the telegram setup you can refer to the [Seeed Wiki article](https://wiki.seeedstudio.com/grove_vision_ai_v2_telegram/) on the topic. I'll go over the general steps here.
 
-- Contact the [BotFather](https://telegram.me/BotFather) sending the message `/newbot` to initate the bot creation process
+- Contact the [BotFather](https://telegram.me/BotFather) sending the message `/newbot` to initiate the bot creation process
 - Respond to the messages from the BotFather giving your bot a name and username
 - After this the bot will respond with a token you can use for interfacing with the API
 - Adding this bot to a group will associate a chat id with your user and the bot (until this step is taken the response will not contain a chat id)
@@ -88,7 +88,7 @@ Given this project is relying on the Grove cables I'm not going to include a Fri
 For the code you'll first want to setup Arduino for use with the Espressif boards. To do this you'll need to:
 
 - Press `File` from the menu bar and press `Preferences` from the list
-- Near the bottom of the screen you'll see an area for additional board management URLs to be added. Here you'll want to add `https://espressif.github.io/arduino-esp32/package_esp32_index.json` to the comma seperated list (it may be blank if this is the first non-Arduino board you're configuring)
+- Near the bottom of the screen you'll see an area for additional board management URLs to be added. Here you'll want to add `https://espressif.github.io/arduino-esp32/package_esp32_index.json` to the comma separated list (it may be blank if this is the first non-Arduino board you're configuring)
 - After installing go to the boards submenu from the left-hand side bar selection menu
 - Type in "Espressif" in the search bar
 - You'll see a `esp32` board option, install this to setup the associated esp-tool tooling and related boards
