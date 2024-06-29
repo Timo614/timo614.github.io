@@ -37,7 +37,7 @@ In the case of a self trained model there are additional steps required as you n
 
 For the telegram setup you can refer to the [Seeed Wiki article](https://wiki.seeedstudio.com/grove_vision_ai_v2_telegram/) on the topic. I'll go over the general steps here.
 
-- Contact https://telegram.me/BotFather sending the message `/newbot` to initate the bot creation process
+- Contact the [BotFather](https://telegram.me/BotFather) sending the message `/newbot` to initate the bot creation process
 - Respond to the messages from the BotFather giving your bot a name and username
 - After this the bot will respond with a token you can use for interfacing with the API
 - Adding this bot to a group will associate a chat id with your user and the bot (until this step is taken the response will not contain a chat id)
