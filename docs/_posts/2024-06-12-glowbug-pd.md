@@ -3,7 +3,7 @@ title: "Glowbug PD - USB PD based WLED controller"
 excerpt: "A gentle step into PCB design with a WLED controller board"
 date: 2024-06-12T14:01:00-04:00
 categories:
-  - mini-projects
+  - pcb
 tags:
   - Project
   - WLED
