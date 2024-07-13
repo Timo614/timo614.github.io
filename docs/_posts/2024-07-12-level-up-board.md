@@ -16,7 +16,7 @@ header:
   overlay_image: /assets/images/projects/pcb/level-up-xiao-1.0/overview.webp
 ---
 
-In this project I'll discuss my Level Up Board for level shifting Xiao form factor projects. This project is a board I designed to replace my earlier [inline DIY level shifter](http://localhost:4000/mini-projects/grove-level-shifter/) I've used for various projects.
+In this project I'll discuss my Level Up Board for level shifting Xiao form factor projects. This project is a board I designed to replace my earlier [inline DIY level shifter](https://www.cranberrygrape.com/mini-projects/grove-level-shifter/) I've used for various projects.
 
 Link to board project: [oshwlab](https://oshwlab.com/timo6141/xiao-level-shifter_copy)
 
@@ -35,7 +35,7 @@ I have three uses for this board:
 - There are some 5V only i2c devices such as the Seeed Vision AI sensor v2 (you can attach the Xiao directly to the board to get around this but my projects usually use multiple sensors so I prefer attaching it via a cable) 
 - There are some actuators that require 5V like the Seeed Water Atomization module
 
-In the past I took care of this by [assembling an inline DIY level shifter](http://localhost:4000/mini-projects/grove-level-shifter/). It works well but I prefer simplicity with enclosures and it makes things a bit more difficult as each DIY board has slightly different dimensions.
+In the past I took care of this by [assembling an inline DIY level shifter](https://www.cranberrygrape.com/mini-projects/grove-level-shifter/). It works well but I prefer simplicity with enclosures and it makes things a bit more difficult as each DIY board has slightly different dimensions.
 
 ## Schematic
 
