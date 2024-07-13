@@ -10,6 +10,7 @@ tags:
   - ESP8266
   - WS2812
   - Lights
+  - PCBWay
 header:
   teaser: /assets/images/projects/pcb/glowbug-pd-1.1/teaser.webp
   image: /assets/images/projects/pcb/glowbug-pd-1.1/overview.webp
