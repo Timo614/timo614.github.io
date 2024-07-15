@@ -18,7 +18,7 @@ header:
 
 In this project I'll discuss my Level Up Board for level shifting Xiao form factor projects. This project is a board I designed to replace my earlier [inline DIY level shifter](https://www.cranberrygrape.com/mini-projects/grove-level-shifter/) I've used for various projects.
 
-Link to board project: [oshwlab](https://oshwlab.com/timo6141/xiao-level-shifter_copy)
+Link to board project: [pcbway](https://www.pcbway.com/project/shareproject/Level_Up_Board_6eb22313.html)
 
 {% include video id="0NuqCE4w80U" provider="youtube" %}
 
