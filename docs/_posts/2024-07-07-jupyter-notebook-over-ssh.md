@@ -29,7 +29,7 @@ In my case I first created a conda environment for machine-learning. I suppose I
 I then installed TensorFlow and several other dependencies (note I'm using 2.9.2 per that above issue):
 ```sh
 conda create -n machine-learning
-activate tensorflow
+activate machine-learning
 conda install pandas scikit-learn notebook matplotlib
 pip install tensorflow-rocm==2.9.2
 ```
