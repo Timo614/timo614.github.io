@@ -26,6 +26,16 @@ For TensorFlow itself I opted for an older version. I have been using EfficientN
 
 In my case I first created a conda environment for machine-learning. I suppose I could have just installed the dependencies with pip but I've found conda to be helpful in terms of isolating my environments for various machine learning needs. It's also nice to be able to start over more easily if the environment gets into a bad state.
 
+```sh
+wget https://repo.anaconda.com/miniconda/Miniconda3-py38_23.3.1-0-Linux-x86_64.sh
+sha256sum Miniconda3-py38_23.3.1-0-Linux-x86_64.sh
+```
+
+After confirming the sha256 signature, install:
+```sh
+bash Miniconda3-py38_23.3.1-0-Linux-x86_64.sh
+```
+
 I then installed TensorFlow and several other dependencies (note I'm using 2.9.2 per that above issue):
 ```sh
 conda create -n machine-learning
