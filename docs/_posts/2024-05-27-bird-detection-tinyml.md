@@ -414,7 +414,7 @@ x = pretrained_model.output
 {: .notice--warning}
 
 ### Kernel regularization to aid quantization
-At some point while struggling to further improve my post quantization results I ran into some [research about absolute cosine regularization](https://www.amazon.science/publications/quantization-aware-training-with-absolute-cosine-regularization-for-automatic-speech-recognition). As I understand it the regularizatin used here punishes a weight for being away from the center of its associated int8 bucket. As such this element is taken into consideration by the model while determining the loss equation and it biases toward regularization friendly weight configurations.
+At some point while struggling to further improve my post quantization results I ran into some [research about absolute cosine regularization](https://www.amazon.science/publications/quantization-aware-training-with-absolute-cosine-regularization-for-automatic-speech-recognition). As I understand it the regularization used here punishes a weight for being away from the center of its associated int8 bucket. As such this element is taken into consideration by the model while determining the loss equation and it biases toward regularization friendly weight configurations.
 
 I used a GPT to help translate that research into a kernel regularizer:
 ```py
