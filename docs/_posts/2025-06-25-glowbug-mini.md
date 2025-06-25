@@ -46,6 +46,11 @@ In this article I'll be discussing the schematic for my board, [linking the proj
 
 At this time I want to thank PCBWay for sponsoring this project by providing the PCBs. I'm grateful they put faith in my project and gave me this opportunity. Their [website](https://www.pcbway.com/) can be accessed for more details about their product line. I like how easy it was to go from my gerber to the shipped product and the boards I received seem of high quality. Their [capabilities page](https://www.pcbway.com/capabilities.html) has a lot information about what they can help you with. PCBWay really does make it easy to get started, build professional PCBs for your project, and see your ideas come to fruition. Love it.
 
+<img src="{{ site.url }}{{ site.baseurl }}/assets/images/projects/pcb/glowbug-mini/glowbug_mini_pcb_front.webp" alt="Glowbug Mini PCB Front" style="padding: 20px; background-color: #FFF;">
+
+<img src="{{ site.url }}{{ site.baseurl }}/assets/images/projects/pcb/glowbug-mini/glowbug_mini_pcb_back.webp" alt="Glowbug Mini PCB Back" style="padding: 20px; background-color: #FFF;">
+
+
 ## Schematic rundown
 
 The entire schematic can be referenced from the EasyEDA project directly or via the [associated PDF linked here]({{ site.url }}{{ site.baseurl }}/assets/images/projects/pcb/glowbug-mini/Schematic_Glowbug-Mini.pdf). 
