@@ -19,7 +19,7 @@ header:
 
 Glowbug Mini is a new WLED control board with USB power delivery and CH224K powered 5V 2A output
 
-[Project Link](https://oshwlab.com/timo6141/light-buddy_copy)
+[Project Link](https://www.pcbway.com/project/shareproject/Glowbug_Mini_77f439ee.html)
 
 {% include video id="euuNeTG7BHU" provider="youtube" %}
 
@@ -35,7 +35,7 @@ This smaller board has the following features:
 - Level shifting the data and clock lines
 - IR receiver
 
-In this article I'll be discussing the schematic for my board, [linking the project on EasyEDA](https://oshwlab.com/timo6141/light-buddy_copy) for the associated board, and demonstrating it in practice.
+In this article I'll be discussing the schematic for my board, [linking the project](https://www.pcbway.com/project/shareproject/Glowbug_Mini_77f439ee.html) for the associated board, and demonstrating it in practice.
 
 **Careful:** Use this board at your own peril. Things seem to be working for me but further testing is warranted before anyone uses it in a production setting.
 {: .notice--danger}
