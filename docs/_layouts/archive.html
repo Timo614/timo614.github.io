@@ -1,0 +1,116 @@
+---
+layout: default
+---
+
+{% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
+{% include page__hero.html %}
+{% elsif page.header.video.id and page.header.video.provider %}
+{% include page__hero_video.html %}
+{% endif %}
+
+{% if page.url != "/" and site.breadcrumbs %}
+{% unless paginator %}
+{% include breadcrumbs.html %}
+{% endunless %}
+{% endif %}
+
+<div id="main" role="main">
+  {% include sidebar.html %}
+
+  <div class="archive terminal-archive">
+    {% unless page.header.overlay_color or page.header.overlay_image %}
+    <h1 id="page-title" class="page__title">{{ page.title }}</h1>
+    {% endunless %}
+    {{ content }}
+  </div>
+</div>
+
+<style>
+  .terminal-archive {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--terminal-yellow);
+    padding: 30px;
+
+    .page__title {
+      color: var(--terminal-gold);
+      font-family: 'Orbitron', monospace;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 40px;
+      text-shadow: 0 0 15px currentColor;
+
+      &::before {
+        content: '[ARCHIVE] ';
+        color: var(--terminal-dark-red);
+        font-size: 0.7em;
+      }
+    }
+
+    .list__item {
+      border-bottom: 1px dotted var(--terminal-gray);
+      padding: 15px 0;
+
+      &:hover {
+        background: rgba(255, 255, 0, 0.05);
+      }
+
+      .archive__item-title {/*  */
+        font-family: 'Orbitron', monospace;
+
+        &::before {
+          content: '> ';
+          color: var(--terminal-yellow);
+        }
+      }
+
+      .archive__item-excerpt {
+        color: var(--terminal-white);
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.9em;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .entries-list {
+    .list__item {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px dotted var(--terminal-gray);
+
+      &:hover {
+        background: rgba(255, 255, 0, 0.05);
+      }
+
+      .archive__item-teaser {
+        margin-right: 20px;
+
+        img {
+          border: 1px solid var(--terminal-yellow);
+          width: 60px;
+          height: 60px;
+          object-fit: cover;
+        }
+      }
+
+      .archive__item-title {
+        color: var(--terminal-gold);
+        font-family: 'Orbitron', monospace;
+        font-size: 1.1em;
+
+        &::before {
+          content: '> ';
+          color: var(--terminal-yellow);
+        }
+      }
+
+      .archive__item-excerpt {
+        color: var(--terminal-white);
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.85em;
+        margin-top: 5px;
+      }
+    }
+  }
+</style>

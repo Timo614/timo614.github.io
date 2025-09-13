@@ -1,0 +1,112 @@
+---
+layout: default
+---
+
+{% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
+  {% include page__hero.html %}
+{% elsif page.header.video.id and page.header.video.provider %}
+  {% include page__hero_video.html %}
+{% endif %}
+
+{% if page.url != "/" and site.breadcrumbs %}
+  {% unless paginator %}
+    {% include breadcrumbs.html %}
+  {% endunless %}
+{% endif %}
+
+<div id="main" role="main">
+  {% include sidebar.html %}
+
+  <div class="archive terminal-home">
+    <div class="terminal-welcome">
+      <h1 class="terminal-cursor">{{ site.title }}</h1>
+      <p class="terminal-subtitle">{{ site.description }}</p>
+      
+      <div class="terminal-stats">
+        <span>[POSTS: {{ site.posts.size }}]</span>
+        <span>[STATUS: ONLINE]</span>
+        <span>[MODE: RETRO]</span>
+      </div>
+    </div>
+    
+    {{ content }}
+  </div>
+</div>
+
+<style>
+.terminal-home {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--terminal-yellow);
+  padding: 30px;
+}
+
+.terminal-welcome {
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+  border: 2px solid var(--terminal-gold);
+  background: rgba(255, 215, 0, 0.05);
+  
+  h1 {
+    font-family: 'Orbitron', monospace;
+    color: var(--terminal-gold);
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px currentColor;
+    line-height: 1.2;
+    
+    &::before {
+      display: none;
+    }
+  }
+  
+  .terminal-subtitle {
+    color: var(--terminal-yellow);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  .terminal-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    
+    span {
+      color: var(--terminal-amber);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9em;
+      padding: 5px 10px;
+      border: 1px solid var(--terminal-amber);
+      background: rgba(255, 176, 0, 0.1);
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .terminal-welcome h1 {
+    font-size: 1.6em;
+  }
+}
+
+@media (max-width: 768px) {
+  .terminal-welcome h1 {
+    font-size: 1.4em;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminal-welcome h1 {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .terminal-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>

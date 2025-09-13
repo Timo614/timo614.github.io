@@ -1,0 +1,148 @@
+<div class="custom-masthead">
+  <div class="custom-nav-container">
+    <div class="custom-site-title">
+      <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    </div>
+    
+    <nav class="custom-nav">
+      <ul class="custom-nav-links">
+        {% for link in site.data.navigation.main %}
+          <li class="custom-nav-item">
+            <a href="{{ link.url | relative_url }}" class="custom-nav-link">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+      
+      {% if site.search == true %}
+        <div class="custom-search">
+          <button class="custom-search-toggle" type="button">
+            <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+              <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,5.77,13.24a6.47,6.47,0,0,0,4.31-1.64l0.06,0.06a1.69,1.69,0,0,0,.55,1.28l2.32,2.32a1.69,1.69,0,0,0,2.4,0A1.69,1.69,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" fill="currentColor"></path>
+            </svg>
+          </button>
+        </div>
+      {% endif %}
+    </nav>
+  </div>
+</div>
+
+<style>
+.custom-masthead {
+  background: rgba(10, 10, 10, 0.8);
+  border-bottom: 2px solid var(--terminal-yellow);
+  box-shadow: 0 2px 10px var(--terminal-yellow);
+  backdrop-filter: blur(2px);
+  position: relative;
+  z-index: 100;
+  padding: 15px 20px;
+}
+
+.custom-nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.custom-site-title {
+  a {
+    font-family: 'Orbitron', monospace;
+    color: var(--terminal-gold);
+    text-shadow: 0 0 15px currentColor;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+    text-decoration: none;
+    border: none;
+    
+    &:hover {
+      color: var(--terminal-white);
+      text-shadow: 0 0 20px var(--terminal-gold);
+    }
+    
+    @media (max-width: 768px) {
+      font-size: 0.7em;
+      line-height: 1.1;
+    }
+  }
+}
+
+.custom-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.custom-nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+  
+  @media (max-width: 768px) {
+    gap: 15px;
+  }
+}
+
+.custom-nav-item {
+  margin: 0;
+}
+
+.custom-nav-link {
+  color: var(--terminal-yellow);
+  font-family: 'Share Tech Mono', monospace;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: var(--terminal-gold);
+    text-shadow: 0 0 5px currentColor;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 0.8em;
+  }
+}
+
+.custom-search-toggle {
+  background: none;
+  border: 1px solid var(--terminal-yellow);
+  color: var(--terminal-yellow);
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: var(--terminal-gold);
+    border-color: var(--terminal-gold);
+    box-shadow: 0 0 5px var(--terminal-gold);
+  }
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-masthead {
+    padding: 10px 15px;
+  }
+  
+  .custom-nav-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .custom-nav {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>

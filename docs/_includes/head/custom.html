@@ -2,6 +2,40 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#8e8c20">
-<meta name="msapplication-TileColor" content="#ffc40d">
-<meta name="theme-color" content="#f0ec17">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#00ff41">
+<meta name="msapplication-TileColor" content="#0a0a0a">
+<meta name="theme-color" content="#00ff41">
+
+<!-- Retro Terminal Styling -->
+<style>
+/* Terminal cursor effect */
+.terminal-cursor::after {
+  content: '█';
+  color: var(--terminal-yellow);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+
+
+/* Matrix-style background effect */
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -10;
+  opacity: 0.15;
+}
+</style>
+
+
+
+<!-- Retro Effects JavaScript -->
+<script src="/assets/js/retro-effects.js"></script>

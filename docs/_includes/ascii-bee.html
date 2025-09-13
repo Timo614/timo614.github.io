@@ -1,0 +1,56 @@
+<div class="ascii-bee">
+<pre>
+    .-""""""-.
+   /          \
+  |  .-""""-.  |
+  | /        \ |
+  |/  .-""-.  \|
+  |  /      \  |
+  | |   ><   | |
+  | |        | |
+  |  \  __  /  |
+  |\  '-..-'  /|
+  | \        / |
+  |  '-.____.-'  |
+   \            /
+    '-.______.-'
+     \\      //
+      \\    //
+       \\  //
+        \\//
+         \/
+    COSMIC BEE
+   [SYSTEM ONLINE]
+</pre>
+</div>
+
+<style>
+.ascii-bee {
+  text-align: center;
+  margin: 20px 0;
+  
+  pre {
+    color: var(--terminal-amber);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8em;
+    line-height: 1.2;
+    text-shadow: 0 0 10px var(--terminal-amber);
+    background: transparent;
+    border: none;
+    animation: glow 2s ease-in-out infinite alternate;
+    
+    &::before {
+      display: none;
+    }
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px var(--terminal-amber);
+  }
+  to {
+    text-shadow: 0 0 20px var(--terminal-amber), 0 0 30px var(--terminal-amber);
+  }
+}
+</style>

@@ -1,15 +1,31 @@
----
-# Only the main Sass file needs front matter (the dashes are enough)
-search: false
----
-
-@charset "utf-8";
+--- # Only the main Sass file needs front matter (the dashes are enough) search: false --- @charset "utf-8";
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes";
 
+// Import retro terminal font
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&family=Orbitron:wght@400;700;900&display=swap');
+
+// 1980s Terminal Color Palette
+:root {
+  --terminal-bg: #0a0a0a;
+  --terminal-yellow: #ffff00;
+  --terminal-amber: #ffb000;
+  --terminal-green: #00ff41;
+  --terminal-gold: #ffd700;
+  --terminal-dark-red: #cc0000;
+  --terminal-red: #ff0040;
+  --terminal-visited: #cc6666;
+  --terminal-blue: #4080ff;
+  --terminal-white: #ffffff;
+  --terminal-gray: #808080;
+  --scanline-color: rgba(255, 255, 0, 0.03);
+}
+
+// Base terminal styling
 html {
   font-size: 10px;
+  background: var(--terminal-bg);
 
   @include breakpoint($small) {
     font-size: 12px;
@@ -26,4 +42,483 @@ html {
   @include breakpoint($x-large) {
     font-size: 18px;
   }
+}
+
+body {
+  background: var(--terminal-bg);
+  color: var(--terminal-yellow);
+  font-family: 'Share Tech Mono', monospace;
+  position: relative;
+
+  // Scanline effect
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg,
+        transparent,
+        transparent 2px,
+        var(--scanline-color) 2px,
+        var(--scanline-color) 4px);
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  // CRT flicker effect
+  animation: flicker 0.15s infinite linear alternate;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+
+  98% {
+    opacity: 1;
+  }
+
+  99% {
+    opacity: 0.98;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+// Terminal window styling
+.page {
+  background: rgba(10, 10, 10, 0.95);
+  border: 2px solid var(--terminal-yellow);
+  border-radius: 0;
+  box-shadow:
+    0 0 20px var(--terminal-yellow),
+    inset 0 0 20px rgba(255, 255, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  position: relative;
+
+  &::before {
+    content: '● ● ●';
+    position: absolute;
+    top: -25px;
+    left: 10px;
+    color: var(--terminal-red);
+    font-size: 12px;
+    background: var(--terminal-bg);
+    padding: 0 10px;
+  }
+}
+
+// Headers with retro styling
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Orbitron', monospace;
+  color: var(--terminal-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px currentColor;
+
+  &::before {
+    content: '> ';
+    color: var(--terminal-yellow);
+  }
+}
+
+h1 {
+  font-size: 2.5em;
+  font-weight: 900;
+  border-bottom: 2px solid var(--terminal-gold);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+// Links with terminal styling
+a {
+  color: var(--terminal-amber);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--terminal-amber);
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: var(--terminal-white);
+    border-bottom-color: var(--terminal-white);
+    text-shadow: 0 0 5px currentColor;
+  }
+
+  &:visited {
+    color: var(--terminal-visited);
+    border-bottom-color: var(--terminal-visited);
+
+    &:hover {
+      color: var(--terminal-white);
+      border-bottom-color: var(--terminal-white);
+      text-shadow: 0 0 5px currentColor;
+    }
+  }
+}
+
+// Code blocks with enhanced terminal look
+pre,
+code {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--terminal-yellow);
+  color: var(--terminal-white);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+pre {
+  box-shadow: inset 0 0 10px rgba(255, 255, 0, 0.2);
+
+  &::before {
+    content: '[SYSTEM]$ ';
+    color: var(--terminal-gold);
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+// Navigation styling
+.masthead {
+  background: rgba(10, 10, 10, 0.8);
+  border-bottom: 2px solid var(--terminal-yellow);
+  box-shadow: 0 2px 10px var(--terminal-yellow);
+  backdrop-filter: blur(2px);
+
+  .site-title {
+    font-family: 'Orbitron', monospace;
+    color: var(--terminal-gold);
+    text-shadow: 0 0 15px currentColor;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media (max-width: 768px) {
+      font-size: 0.7em;
+      white-space: normal;
+      line-height: 1.1;
+    }
+  }
+}
+
+.greedy-nav {
+  background: none !important;
+  background-color: transparent !important;
+
+  a {
+    color: var(--terminal-yellow);
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
+
+    &:hover {
+      color: var(--terminal-gold);
+      text-shadow: 0 0 5px currentColor;
+    }
+  }
+}
+
+// Override theme's greedy-nav background with higher specificity
+.masthead .greedy-nav {
+  background: none !important;
+  background-color: transparent !important;
+}
+
+.masthead .greedy-nav__toggle {
+  background: none !important;
+  background-color: transparent !important;
+}
+
+// Target any nested elements that might have backgrounds
+.greedy-nav .visible-links,
+.greedy-nav .hidden-links {
+  background: none !important;
+  background-color: transparent !important;
+}
+
+// Post entries with terminal styling
+.archive__item {
+  border: 1px solid var(--terminal-gray);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  margin-bottom: 20px;
+
+  &:hover {
+    border-color: var(--terminal-yellow);
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.3);
+  }
+}
+
+.archive__item-title {
+  font-family: 'Orbitron', monospace;
+  color: var(--terminal-gold);
+  text-transform: uppercase;
+
+  &::before {
+    content: '[POST] ';
+    color: var(--terminal-dark-red);
+    font-size: 0.8em;
+  }
+}
+
+// Sidebar styling
+.sidebar {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--terminal-yellow);
+  padding: 20px;
+  margin-right: 20px;
+
+  .author__avatar img {
+    border: 2px solid var(--terminal-gold);
+    box-shadow: 0 0 15px var(--terminal-gold);
+  }
+
+  .author__name {
+    color: var(--terminal-gold);
+    font-family: 'Orbitron', monospace;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px currentColor;
+    font-size: 0.9em;
+    line-height: 1.2;
+
+    @media (max-width: 1200px) {
+      font-size: 0.8em;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 0.9em;
+    }
+  }
+
+  .author__bio {
+    color: var(--terminal-yellow);
+    font-family: 'Share Tech Mono', monospace;
+  }
+}
+
+// Footer styling
+.page__footer {
+  background: var(--terminal-bg);
+  border-top: 2px solid var(--terminal-yellow);
+  color: var(--terminal-yellow);
+
+  footer {
+    font-family: 'Share Tech Mono', monospace;
+  }
+}
+
+// Button styling
+.btn {
+  background: var(--terminal-bg);
+  border: 2px solid var(--terminal-yellow);
+  color: var(--terminal-yellow);
+  font-family: 'Share Tech Mono', monospace;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--terminal-yellow);
+    color: var(--terminal-bg);
+    box-shadow: 0 0 15px var(--terminal-yellow);
+  }
+}
+
+// Search styling
+.search__toggle {
+  color: var(--terminal-amber);
+
+  &:hover {
+    color: var(--terminal-gold);
+    text-shadow: 0 0 5px currentColor;
+  }
+}
+
+// Pagination styling
+.pagination {
+
+  .current,
+  .pagination--pager {
+    background: var(--terminal-bg);
+    border: 1px solid var(--terminal-yellow);
+    color: var(--terminal-yellow);
+
+    &:hover {
+      background: var(--terminal-yellow);
+      color: var(--terminal-bg);
+    }
+  }
+}
+
+// Terminal prompt for code blocks
+.terminal-prompt {
+  color: var(--terminal-gold);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+
+  .prompt-user {
+    color: var(--terminal-yellow);
+  }
+
+  .prompt-path {
+    color: var(--terminal-blue);
+  }
+}
+
+// Enhanced table styling
+table {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--terminal-yellow);
+  border-collapse: collapse;
+
+  th {
+    background: rgba(255, 255, 0, 0.2);
+    color: var(--terminal-gold);
+    font-family: 'Orbitron', monospace;
+    text-transform: uppercase;
+    border: 1px solid var(--terminal-yellow);
+    padding: 10px;
+  }
+
+  td {
+    border: 1px solid var(--terminal-gray);
+    padding: 8px 12px;
+    color: var(--terminal-white);
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  tr:nth-child(even) {
+    background: rgba(255, 255, 0, 0.05);
+  }
+
+  tr:hover {
+    background: rgba(255, 255, 0, 0.1);
+  }
+}
+
+// Form styling
+input,
+textarea,
+select {
+  background: var(--terminal-bg);
+  border: 2px solid var(--terminal-yellow);
+  color: var(--terminal-yellow);
+  font-family: 'Share Tech Mono', monospace;
+  padding: 10px;
+
+  &:focus {
+    outline: none;
+    border-color: var(--terminal-gold);
+    box-shadow: 0 0 10px var(--terminal-gold);
+  }
+
+  &::placeholder {
+    color: var(--terminal-gray);
+  }
+}
+
+// Tag styling
+.page__taxonomy {
+  .page__taxonomy-item {
+    background: var(--terminal-bg);
+    border: 1px solid var(--terminal-amber);
+    color: var(--terminal-amber);
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
+    font-size: 0.8em;
+
+    &:hover {
+      background: var(--terminal-amber);
+      color: var(--terminal-bg);
+      text-shadow: none;
+    }
+  }
+}
+
+// Social share buttons
+.page__share {
+  .btn {
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
+
+    &.btn--twitter {
+      border-color: var(--terminal-dark-red);
+      color: var(--terminal-dark-red);
+
+      &:hover {
+        background: var(--terminal-dark-red);
+        color: var(--terminal-bg);
+      }
+    }
+
+    &.btn--facebook {
+      border-color: var(--terminal-blue);
+      color: var(--terminal-blue);
+
+      &:hover {
+        background: var(--terminal-blue);
+        color: var(--terminal-bg);
+      }
+    }
+
+    &.btn--linkedin {
+      border-color: var(--terminal-dark-red);
+      color: var(--terminal-dark-red);
+
+      &:hover {
+        background: var(--terminal-dark-red);
+        color: var(--terminal-bg);
+      }
+    }
+  }
+}
+
+// Fix sidebar width and layout issues
+#main {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  .sidebar {
+    flex: 0 0 300px;
+    max-width: 300px;
+
+    @media (max-width: 1024px) {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+
+  .page,
+  .archive {
+    flex: 1;
+    min-width: 0; // Prevents flex item from overflowing
+    max-width: calc(100% - 340px); // Account for sidebar width + margin
+
+    @media (max-width: 1024px) {
+      max-width: 100%;
+    }
+  }
+
+  // High specificity overrides for theme navigation backgrounds
+  body .masthead .greedy-nav,
+  body .masthead .greedy-nav .visible-links,
+  body .masthead .greedy-nav .hidden-links,
+  body .masthead .greedy-nav__toggle {
+    background: none !important;
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+  }
+
 }

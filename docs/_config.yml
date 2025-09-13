@@ -14,7 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 locale: en-US
-title: Cranberry Grape | Cosmic Bee | Tim Lovett
+title: Cranberry Grape | Cosmic Bee
 email: tim@cranberrygrape.com
 description: >-
   Website / news feed associated with the workings of
@@ -24,7 +24,7 @@ baseurl: ""
 url: "https://www.cranberrygrape.com"
 twitter_username: the_cosmic_bee
 github_username:  timo614
-minimal_mistakes_skin: sunrise
+minimal_mistakes_skin: dark
 search: true
 teaser: /assets/images/500x300.webp
 og_image: /assets/images/bee.webp
@@ -75,7 +75,7 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "Cosmic Bee (Tim Lovett)"
+  name   : "Cosmic Bee"
   avatar : "/assets/images/bee.webp"
   bio    : "Website / news feed associated with the workings of Cosmic Bee / Tim Lovett. Machine learning, hobbyist PCB design, rust programming, 3D printing, and embedded programming."
   links:
